@@ -1,9 +1,0 @@
-FlagEmbedding
-vllm==0.7.1
-jinja2
-datasets
-sentencepiece
-modelscope
-peft
-deepspeed
-bitsandbytes
