@@ -18,7 +18,7 @@ workflow.add_node("add_conversation", add_conversation)
 workflow.add_edge(START, "tranform_query")
 workflow.add_edge("tranform_query", "retrieve")
 workflow.add_edge("retrieve", "grade_documents")
-workflow.add_condition_edges(
+workflow.add_conditional_edges(
     "grade_documents",
     decide_to_generate,
     {

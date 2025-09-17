@@ -4,6 +4,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from FlagEmbedding import BGEM3FlagModel
 from langchain.embeddings.base import Embeddings
 from langchain.schema import Document
+import torch
 import json
 import uuid
 import os
@@ -11,15 +12,36 @@ import os
 
 class BGEM3Embedding(Embeddings):
     def __init__(self, model_name="BAAI/bge-m3", use_fp16=True):
-        self.model = BGEM3FlagModel(model_name, use_fp16=use_fp16)
+        # Set device
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        print(f"Using device: {self.device}")
+        
+        # Initialize model with error handling
+        try:
+            self.model = BGEM3FlagModel(
+                model_name, 
+                use_fp16=use_fp16,
+                device=self.device
+            )
+        except Exception as e:
+            print(f"Error initializing model: {e}")
+            raise
 
     def embed_documents(self, texts):
-        embeddings = [self.model.encode(text)["dense_vecs"] for text in texts]
-        return [vec.tolist() for vec in embeddings]
+        try:
+            result = self.model.encode(texts)
+            return result["dense_vecs"].tolist()
+        except Exception as e:
+            print(f"Error in embed_documents: {e}")
+            raise
 
     def embed_query(self, text):
-        embedding = self.model.encode(text)["dense_vecs"]
-        return embedding.tolist()
+        try:
+            result = self.model.encode([text])
+            return result["dense_vecs"][0].tolist()
+        except Exception as e:
+            print(f"Error in embed_query: {e}")
+            raise
     
 
 urls =[
@@ -52,7 +74,7 @@ else:
         collection_name="rag-schoma",
         persist_directory=persist_directory
     )
-    vectostore.persist() 
+    # vectostore.persist() 
 
 retriever = vectostore.as_retriever()
 
@@ -88,3 +110,6 @@ def add_conversation(question, answer, metadata=None):
     )
     vectostore.add_documents([new_doc])
     print("---CONVERSATION ADDED IN VECTOSTORE---\n")
+
+
+

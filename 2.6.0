@@ -1,0 +1,25 @@
+Requirement already satisfied: torch in d:\users\nguyen van thang\anaconda3\lib\site-packages (2.2.2)
+Collecting torch
+  Using cached torch-2.8.0-cp312-cp312-win_amd64.whl.metadata (30 kB)
+Requirement already satisfied: filelock in d:\users\nguyen van thang\anaconda3\lib\site-packages (from torch) (3.13.1)
+Requirement already satisfied: typing-extensions>=4.10.0 in d:\users\nguyen van thang\anaconda3\lib\site-packages (from torch) (4.14.0)
+Collecting sympy>=1.13.3 (from torch)
+  Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: networkx in d:\users\nguyen van thang\anaconda3\lib\site-packages (from torch) (3.3)
+Requirement already satisfied: jinja2 in d:\users\nguyen van thang\anaconda3\lib\site-packages (from torch) (3.1.4)
+Requirement already satisfied: fsspec in d:\users\nguyen van thang\anaconda3\lib\site-packages (from torch) (2024.6.1)
+Requirement already satisfied: setuptools in d:\users\nguyen van thang\anaconda3\lib\site-packages (from torch) (75.1.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in d:\users\nguyen van thang\anaconda3\lib\site-packages (from sympy>=1.13.3->torch) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in d:\users\nguyen van thang\anaconda3\lib\site-packages (from jinja2->torch) (2.1.3)
+Using cached torch-2.8.0-cp312-cp312-win_amd64.whl (241.3 MB)
+Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Installing collected packages: sympy, torch
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.13.1
+    Uninstalling sympy-1.13.1:
+      Successfully uninstalled sympy-1.13.1
+  Attempting uninstall: torch
+    Found existing installation: torch 2.2.2
+    Uninstalling torch-2.2.2:
+      Successfully uninstalled torch-2.2.2
+Successfully installed sympy-1.14.0 torch-2.8.0

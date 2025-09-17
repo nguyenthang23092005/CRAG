@@ -39,7 +39,7 @@ def evaluate_documents(state):
 def transform_query(state):
     print("---TRANSFORM QUERY---")
     question = state["question"]
-    documents = state["documents"]
+    documents = state.get("documents", [])
     better_question = question_rewriter.invoke({"question": question})
     return {"documents": documents, "question": better_question}
 
